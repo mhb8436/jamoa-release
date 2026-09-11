@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jamoa — Support</title>
+<meta name="description" content="Support and privacy information for jamoa, a macOS archiver that keeps filenames intact between macOS and Windows.">
+<style>
+  :root{
+    --ground:#15161A; --raised:#1C1E24; --line:#2A2D35;
+    --brass:#C9A227; --cream:#E9E4DA; --muted:#9A9689;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--cream);
+    font:16px/1.65 ui-sans-serif,-apple-system,"SF Pro Text","Helvetica Neue",
+         "Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px; margin:0 auto; padding:0 24px}
+  header{padding:72px 0 48px; text-align:center}
+  header img{width:112px; height:112px; border-radius:24px}
+  h1{margin:22px 0 6px; font-size:34px; font-weight:600; letter-spacing:-.02em}
+  .tag{margin:0; color:var(--muted); font-size:17px}
+  h2{
+    margin:56px 0 6px; font-size:13px; font-weight:600; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--brass);
+  }
+  h3{margin:30px 0 6px; font-size:17px; font-weight:600}
+  p{margin:0 0 14px; color:#CFCABE}
+  a{color:var(--brass)}
+  ul{margin:0 0 14px; padding-left:20px; color:#CFCABE}
+  li{margin:5px 0}
+  .card{
+    background:var(--raised); border:1px solid var(--line);
+    border-radius:12px; padding:20px 22px; margin:18px 0;
+  }
+  .lang{
+    display:flex; gap:8px; justify-content:center; margin:10px 0 0;
+  }
+  .lang a{
+    color:var(--muted); text-decoration:none; font-size:14px;
+    padding:5px 12px; border:1px solid var(--line); border-radius:999px;
+  }
+  .lang a:hover{color:var(--cream); border-color:var(--brass)}
+  hr{border:0; border-top:1px solid var(--line); margin:64px 0}
+  footer{padding:40px 0 72px; color:var(--muted); font-size:14px; text-align:center}
+  code{
+    background:#23262E; padding:2px 6px; border-radius:5px;
+    font:13px/1.5 ui-monospace,"SF Mono",Menlo,monospace; color:var(--cream);
+  }
+  @media (max-width:520px){ header{padding:48px 0 32px} h1{font-size:28px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="icon.png" alt="jamoa">
+    <h1>jamoa</h1>
+    <p class="tag">Filenames intact on Windows</p>
+    <div class="lang"><a href="#english">English</a><a href="#korean">한국어</a></div>
+  </header>
+
+  <section id="english">
+    <h2>What it does</h2>
+    <p>jamoa is a file archiver for macOS. It normalizes filenames when compressing so
+    they do not break apart on Windows, and it detects and corrects legacy encodings when
+    opening archives made on Windows.</p>
+    <p>Formats: ZIP, TAR, TAR.GZ, TAR.XZ, TAR.BZ2 and 7Z for creating; those plus GZIP,
+    XZ and BZIP2 for opening. ZIP archives can be encrypted with AES-256.</p>
+
+    <h2>Questions</h2>
+
+    <h3>The right-click menu in Finder does not show jamoa</h3>
+    <p>macOS turns off Finder extensions by default. Open
+    <strong>System Settings &rsaquo; General &rsaquo; Login Items &amp; Extensions &rsaquo;
+    Finder Extensions</strong> and switch on jamoa.</p>
+
+    <h3>Why does jamoa ask for permission to read a folder?</h3>
+    <p>A Finder extension can tell jamoa which files you picked, but macOS does not let it
+    hand over permission to read them. Allowing a folder once lets jamoa compress anything
+    inside it without asking again. You can review or remove that permission in
+    <strong>jamoa &rsaquo; Settings &rsaquo; File Access</strong>.</p>
+
+    <h3>The name of my archive broke after I uploaded it somewhere</h3>
+    <p>Names <em>inside</em> an archive are file content and survive any transfer. The name
+    of the archive file itself is not, and some cloud services rewrite filenames during
+    upload and download. This happens with any archiver. Using an English name for the
+    archive file avoids it.</p>
+
+    <h3>Can jamoa open RAR files?</h3>
+    <p>No. The licence for the RAR reference code does not permit it.</p>
+
+    <h2>Support</h2>
+    <div class="card">
+      <p style="margin:0">Please open an issue and we will reply there:<br>
+      <a href="https://github.com/mhb8436/jamoa-release/issues">github.com/mhb8436/jamoa-release/issues</a></p>
+    </div>
+
+    <h2>Privacy</h2>
+    <div class="card">
+      <p style="margin:0 0 10px"><strong>jamoa collects nothing.</strong></p>
+      <ul style="margin:0">
+        <li>No personal data is collected, stored or transmitted.</li>
+        <li>The app has no network entitlement and makes no network requests.</li>
+        <li>No analytics, no tracking, no advertising identifiers.</li>
+        <li>Files you compress or extract never leave your Mac.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="korean" lang="ko">
+    <h2>이 앱이 하는 일</h2>
+    <p>jamoa는 macOS용 압축 프로그램입니다. 압축할 때 파일명을 정규화해 Windows에서 자모가
+    분리되지 않게 하고, Windows에서 만든 압축 파일을 열 때는 레거시 인코딩을 추정해 깨진
+    이름을 복원합니다.</p>
+    <p>만들기: ZIP, TAR, TAR.GZ, TAR.XZ, TAR.BZ2, 7Z. 열기: 위 전부와 GZIP, XZ, BZIP2.
+    ZIP은 AES-256 암호화를 지원합니다.</p>
+
+    <h2>자주 묻는 것</h2>
+
+    <h3>Finder 우클릭 메뉴에 jamoa가 안 보입니다</h3>
+    <p>macOS는 Finder 확장을 기본으로 꺼 둡니다.
+    <strong>시스템 설정 &rsaquo; 일반 &rsaquo; 로그인 항목 및 확장 프로그램 &rsaquo;
+    Finder 확장 프로그램</strong>에서 jamoa를 켜주세요.</p>
+
+    <h3>왜 폴더 접근 권한을 묻나요?</h3>
+    <p>Finder 확장은 어떤 파일을 골랐는지 알려줄 수 있지만, macOS가 그 파일을 읽을 권한까지
+    넘기는 것은 허용하지 않습니다. 폴더를 한 번 허용하면 그 안의 항목은 다시 묻지 않고
+    압축합니다. 허용 내역은 <strong>jamoa &rsaquo; 설정 &rsaquo; 파일 접근</strong>에서
+    확인하고 해제할 수 있습니다.</p>
+
+    <h3>어딘가에 올렸더니 압축 파일 이름이 깨졌습니다</h3>
+    <p>압축 파일 <em>안</em>의 이름은 파일 내용이라 어떤 전송 경로에서도 안전합니다. 다만
+    압축 파일 자체의 이름은 다릅니다. 일부 클라우드 서비스가 올리고 내리는 과정에서 파일명을
+    다시 씁니다. 이건 어떤 압축 프로그램을 써도 같습니다. 압축 파일 이름만 영문으로 두면
+    피할 수 있습니다.</p>
+
+    <h3>RAR을 열 수 있나요?</h3>
+    <p>열 수 없습니다. RAR 참조 코드의 라이선스가 이를 허용하지 않습니다.</p>
+
+    <h2>문의</h2>
+    <div class="card">
+      <p style="margin:0">이슈를 남겨주시면 그곳에서 답변드립니다.<br>
+      <a href="https://github.com/mhb8436/jamoa-release/issues">github.com/mhb8436/jamoa-release/issues</a></p>
+    </div>
+
+    <h2>개인정보 처리방침</h2>
+    <div class="card">
+      <p style="margin:0 0 10px"><strong>jamoa는 아무것도 수집하지 않습니다.</strong></p>
+      <ul style="margin:0">
+        <li>어떤 개인정보도 수집·저장·전송하지 않습니다.</li>
+        <li>네트워크 엔타이틀먼트가 없으며 어떤 통신도 하지 않습니다.</li>
+        <li>분석 도구, 추적, 광고 식별자를 쓰지 않습니다.</li>
+        <li>압축하거나 해제한 파일은 사용자의 Mac을 떠나지 않습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    jamoa &middot; macOS &middot; <span id="y"></span> JI HOON LEE
+    <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  </footer>
+
+</div>
+</body>
+</html>
