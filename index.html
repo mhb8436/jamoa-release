@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jamoa — Support</title>
-<meta name="description" content="Support and privacy information for jamoa, a macOS archiver that keeps filenames intact between macOS and Windows.">
+<title>jamoa — Filenames intact on Windows</title>
+<meta name="description" content="jamoa is a free macOS archiver that keeps filenames intact between macOS and Windows. Download the notarized DMG.">
 <style>
   :root{
     --ground:#15161A; --raised:#1C1E24; --line:#2A2D35;
     --brass:#C9A227; --cream:#E9E4DA; --muted:#9A9689;
+    --bad:#D98C7A; --good:#8FCB9B;
   }
   *{box-sizing:border-box}
   body{
@@ -18,10 +19,24 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:720px; margin:0 auto; padding:0 24px}
-  header{padding:72px 0 48px; text-align:center}
+  header{padding:72px 0 40px; text-align:center}
   header img{width:112px; height:112px; border-radius:24px}
   h1{margin:22px 0 6px; font-size:34px; font-weight:600; letter-spacing:-.02em}
   .tag{margin:0; color:var(--muted); font-size:17px}
+  .cta{
+    display:inline-flex; align-items:center; gap:10px; margin:26px 0 0;
+    padding:14px 26px; border-radius:12px; background:var(--brass); color:#15161A;
+    font-weight:600; font-size:17px; text-decoration:none;
+  }
+  .cta:hover{filter:brightness(1.08)}
+  .cta svg{width:18px; height:18px}
+  .meta{margin:14px 0 0; color:var(--muted); font-size:14px}
+  .meta a{color:var(--muted)}
+  .badges{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:18px 0 0}
+  .badges span{
+    font-size:13px; color:var(--muted); border:1px solid var(--line);
+    border-radius:999px; padding:4px 11px;
+  }
   h2{
     margin:56px 0 6px; font-size:13px; font-weight:600; letter-spacing:.09em;
     text-transform:uppercase; color:var(--brass);
@@ -29,15 +44,23 @@
   h3{margin:30px 0 6px; font-size:17px; font-weight:600}
   p{margin:0 0 14px; color:#CFCABE}
   a{color:var(--brass)}
-  ul{margin:0 0 14px; padding-left:20px; color:#CFCABE}
+  ul,ol{margin:0 0 14px; padding-left:20px; color:#CFCABE}
   li{margin:5px 0}
   .card{
     background:var(--raised); border:1px solid var(--line);
     border-radius:12px; padding:20px 22px; margin:18px 0;
   }
-  .lang{
-    display:flex; gap:8px; justify-content:center; margin:10px 0 0;
+  .card.center{text-align:center}
+  .compare{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:18px 0}
+  .compare div{background:var(--raised); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .compare .lbl{
+    display:block; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:10px;
   }
+  .compare code{display:block; background:transparent; padding:0; font-size:15px; word-break:break-all}
+  .compare .bad code{color:var(--bad)}
+  .compare .good code{color:var(--good)}
+  .lang{display:flex; gap:8px; justify-content:center; margin:22px 0 0}
   .lang a{
     color:var(--muted); text-decoration:none; font-size:14px;
     padding:5px 12px; border:1px solid var(--line); border-radius:999px;
@@ -49,7 +72,10 @@
     background:#23262E; padding:2px 6px; border-radius:5px;
     font:13px/1.5 ui-monospace,"SF Mono",Menlo,monospace; color:var(--cream);
   }
-  @media (max-width:520px){ header{padding:48px 0 32px} h1{font-size:28px} }
+  @media (max-width:520px){
+    header{padding:48px 0 32px} h1{font-size:28px}
+    .compare{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
@@ -58,17 +84,65 @@
   <header>
     <img src="icon.png" alt="jamoa">
     <h1>jamoa</h1>
-    <p class="tag">Filenames intact on Windows</p>
+    <p class="tag">Filenames intact on Windows &middot; Windows로 보낸 파일명이 깨지지 않습니다</p>
+
+    <a class="cta" href="https://github.com/mhb8436/jamoa-release/releases/latest/download/jamoa.dmg">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v12M6 11l6 6 6-6M4 20h16"/>
+      </svg>
+      Download for macOS
+    </a>
+    <p class="meta" id="rel" hidden>
+      Version <span id="rv"></span> &middot; <span id="rd"></span> &middot; <span id="rs"></span>
+      &middot; <a href="https://github.com/mhb8436/jamoa-release/releases">all releases</a>
+    </p>
+    <div class="badges">
+      <span>macOS 14 or later</span>
+      <span>Apple silicon &amp; Intel</span>
+      <span>Notarized by Apple</span>
+      <span>Free</span>
+    </div>
+
     <div class="lang"><a href="#english">English</a><a href="#korean">한국어</a></div>
   </header>
 
   <section id="english">
+    <h2>The problem</h2>
+    <p>macOS stores Korean, Japanese and other composed characters in a decomposed form.
+    The built-in Archive Utility copies that form into the ZIP as-is, so on Windows the
+    letters fall apart. Going the other way, a ZIP made on Windows often carries filenames
+    in a legacy code page, which Archive Utility only decodes correctly when it matches
+    your Mac's system language.</p>
+
+    <div class="compare">
+      <div class="bad">
+        <span class="lbl">Archive Utility, opened on Windows</span>
+        <code>ㅂㅗㄱㅗㅅㅓ_ㅊㅚㅈㅗㅇ.docx</code>
+      </div>
+      <div class="good">
+        <span class="lbl">jamoa, opened on Windows</span>
+        <code>보고서_최종.docx</code>
+      </div>
+    </div>
+
     <h2>What it does</h2>
-    <p>jamoa is a file archiver for macOS. It normalizes filenames when compressing so
-    they do not break apart on Windows, and it detects and corrects legacy encodings when
-    opening archives made on Windows.</p>
-    <p>Formats: ZIP, TAR, TAR.GZ, TAR.XZ, TAR.BZ2 and 7Z for creating; those plus GZIP,
-    XZ and BZIP2 for opening. ZIP archives can be encrypted with AES-256.</p>
+    <ul>
+      <li><strong>Compressing:</strong> every filename is normalized to NFC and flagged as UTF-8,
+      so it reads correctly on Windows, Linux and other Macs.</li>
+      <li><strong>Extracting:</strong> archives made on Windows are inspected before extraction.
+      jamoa guesses the legacy encoding (CP949, Shift_JIS, GB18030, Big5, CP1252 and more) and
+      lets you switch it with a live preview of the filenames.</li>
+      <li><strong>Formats:</strong> ZIP, TAR, TAR.GZ, TAR.XZ, TAR.BZ2 and 7Z for creating; those
+      plus GZIP, XZ and BZIP2 for opening. ZIP archives can be encrypted with AES-256.</li>
+      <li><strong>Finder integration:</strong> right-click to compress here or extract here.</li>
+    </ul>
+
+    <h2>Install</h2>
+    <ol>
+      <li>Open the downloaded <code>jamoa.dmg</code> and drag jamoa into <strong>Applications</strong>.</li>
+      <li>Launch it. The app is signed and notarized by Apple, so it opens without any workaround.</li>
+      <li>Optional: turn on the Finder extension for right-click menus. See the first question below.</li>
+    </ol>
 
     <h2>Questions</h2>
 
@@ -89,23 +163,29 @@
     upload and download. This happens with any archiver. Using an English name for the
     archive file avoids it.</p>
 
+    <h3>How do I get updates?</h3>
+    <p>Choose <strong>jamoa &rsaquo; Check for Updates</strong>. jamoa never checks on its own.</p>
+
     <h3>Can jamoa open RAR files?</h3>
     <p>No. The licence for the RAR reference code does not permit it.</p>
 
-    <h2>Support</h2>
+    <h2 id="support">Support</h2>
     <div class="card">
       <p style="margin:0">Please open an issue and we will reply there:<br>
       <a href="https://github.com/mhb8436/jamoa-release/issues">github.com/mhb8436/jamoa-release/issues</a></p>
     </div>
 
-    <h2>Privacy</h2>
+    <h2 id="privacy">Privacy</h2>
     <div class="card">
       <p style="margin:0 0 10px"><strong>jamoa collects nothing.</strong></p>
       <ul style="margin:0">
         <li>No personal data is collected, stored or transmitted.</li>
-        <li>The app has no network entitlement and makes no network requests.</li>
         <li>No analytics, no tracking, no advertising identifiers.</li>
         <li>Files you compress or extract never leave your Mac.</li>
+        <li>The only network request jamoa ever makes is when <em>you</em> choose
+        <strong>Check for Updates</strong>: it reads the latest version number from GitHub.
+        Nothing about you or your files is sent. The Mac App Store version has no such menu
+        and makes no network requests at all.</li>
       </ul>
     </div>
   </section>
@@ -113,12 +193,46 @@
   <hr>
 
   <section id="korean" lang="ko">
+    <div class="card center">
+      <a class="cta" style="margin:0" href="https://github.com/mhb8436/jamoa-release/releases/latest/download/jamoa.dmg">macOS용 다운로드</a>
+      <p class="meta">macOS 14 이상 &middot; Apple 실리콘·인텔 &middot; Apple 공증 완료 &middot; 무료</p>
+    </div>
+
+    <h2>어떤 문제인가</h2>
+    <p>macOS는 한글을 자모가 분리된 형태로 저장합니다. 기본 압축 도구는 그 형태를 그대로
+    ZIP에 넣기 때문에 Windows에서 열면 글자가 풀어져 보입니다. 반대로 Windows에서 만든
+    ZIP은 파일명이 레거시 코드페이지로 들어 있는 경우가 많고, 기본 도구는 Mac의 시스템
+    언어와 맞는 코드페이지 하나만 제대로 풉니다.</p>
+
+    <div class="compare">
+      <div class="bad">
+        <span class="lbl">기본 압축 도구 &rarr; Windows에서 열면</span>
+        <code>ㅂㅗㄱㅗㅅㅓ_ㅊㅚㅈㅗㅇ.docx</code>
+      </div>
+      <div class="good">
+        <span class="lbl">jamoa &rarr; Windows에서 열면</span>
+        <code>보고서_최종.docx</code>
+      </div>
+    </div>
+
     <h2>이 앱이 하는 일</h2>
-    <p>jamoa는 macOS용 압축 프로그램입니다. 압축할 때 파일명을 정규화해 Windows에서 자모가
-    분리되지 않게 하고, Windows에서 만든 압축 파일을 열 때는 레거시 인코딩을 추정해 깨진
-    이름을 복원합니다.</p>
-    <p>만들기: ZIP, TAR, TAR.GZ, TAR.XZ, TAR.BZ2, 7Z. 열기: 위 전부와 GZIP, XZ, BZIP2.
-    ZIP은 AES-256 암호화를 지원합니다.</p>
+    <ul>
+      <li><strong>압축할 때:</strong> 모든 파일명을 NFC로 정규화하고 UTF-8 플래그를 세웁니다.
+      Windows, Linux, 다른 Mac 어디서든 그대로 읽힙니다.</li>
+      <li><strong>풀 때:</strong> Windows에서 만든 압축 파일은 풀기 전에 미리 봅니다. 레거시
+      인코딩(CP949, Shift_JIS, GB18030, Big5, CP1252 등)을 추정하고, 인코딩을 바꾸면 파일명이
+      실시간으로 바뀌는 것을 보면서 고를 수 있습니다.</li>
+      <li><strong>형식:</strong> 만들기는 ZIP, TAR, TAR.GZ, TAR.XZ, TAR.BZ2, 7Z. 열기는 위 전부와
+      GZIP, XZ, BZIP2. ZIP은 AES-256 암호화를 지원합니다.</li>
+      <li><strong>Finder 연동:</strong> 우클릭으로 여기에 압축, 여기에 풀기.</li>
+    </ul>
+
+    <h2>설치</h2>
+    <ol>
+      <li>내려받은 <code>jamoa.dmg</code>를 열고 jamoa를 <strong>응용 프로그램</strong>으로 끌어다 놓습니다.</li>
+      <li>실행합니다. Apple이 서명과 공증을 확인한 앱이라 별도 우회 없이 바로 열립니다.</li>
+      <li>선택: 우클릭 메뉴를 쓰려면 Finder 확장을 켭니다. 아래 첫 번째 항목을 보세요.</li>
+    </ol>
 
     <h2>자주 묻는 것</h2>
 
@@ -139,6 +253,9 @@
     다시 씁니다. 이건 어떤 압축 프로그램을 써도 같습니다. 압축 파일 이름만 영문으로 두면
     피할 수 있습니다.</p>
 
+    <h3>업데이트는 어떻게 받나요?</h3>
+    <p><strong>jamoa &rsaquo; 업데이트 확인</strong>을 누릅니다. jamoa가 스스로 확인하는 일은 없습니다.</p>
+
     <h3>RAR을 열 수 있나요?</h3>
     <p>열 수 없습니다. RAR 참조 코드의 라이선스가 이를 허용하지 않습니다.</p>
 
@@ -153,18 +270,36 @@
       <p style="margin:0 0 10px"><strong>jamoa는 아무것도 수집하지 않습니다.</strong></p>
       <ul style="margin:0">
         <li>어떤 개인정보도 수집·저장·전송하지 않습니다.</li>
-        <li>네트워크 엔타이틀먼트가 없으며 어떤 통신도 하지 않습니다.</li>
         <li>분석 도구, 추적, 광고 식별자를 쓰지 않습니다.</li>
         <li>압축하거나 해제한 파일은 사용자의 Mac을 떠나지 않습니다.</li>
+        <li>jamoa가 네트워크에 나가는 경우는 <em>사용자가</em> <strong>업데이트 확인</strong>을
+        눌렀을 때뿐이며, GitHub에서 최신 버전 번호를 읽어 올 뿐 사용자나 파일에 관한 정보는
+        보내지 않습니다. Mac App Store 버전에는 이 메뉴가 없고 어떤 통신도 하지 않습니다.</li>
       </ul>
     </div>
   </section>
 
   <footer>
     jamoa &middot; macOS &middot; <span id="y"></span> JI HOON LEE
-    <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
   </footer>
 
 </div>
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+  // 최신 릴리스의 버전·날짜·크기를 보여준다. 릴리스가 없거나 API가 막히면 조용히 숨긴다.
+  (async () => {
+    try {
+      const r = await fetch('https://api.github.com/repos/mhb8436/jamoa-release/releases/latest',
+                            { headers: { Accept: 'application/vnd.github+json' } });
+      if (!r.ok) return;
+      const j = await r.json();
+      const dmg = (j.assets || []).find(a => a.name === 'jamoa.dmg');
+      document.getElementById('rv').textContent = String(j.tag_name || '').replace(/^v/, '');
+      document.getElementById('rd').textContent = String(j.published_at || '').slice(0, 10);
+      document.getElementById('rs').textContent = dmg ? (dmg.size / 1048576).toFixed(1) + ' MB' : '';
+      document.getElementById('rel').hidden = false;
+    } catch (e) {}
+  })();
+</script>
 </body>
 </html>
