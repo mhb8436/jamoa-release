@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jamoa — Filenames intact on Windows</title>
-<meta name="theme-color" content="#C9A227">
+<meta name="theme-color" content="#A8442A">
 <meta name="description" content="jamoa is a free macOS archiver that keeps filenames intact between macOS and Windows. Download the notarized DMG.">
 <style>
   :root{
     --ground:#FBF9F4; --raised:#FFFFFF; --line:#E6E1D6;
     --ink:#1C1E24; --text:#3A3B42; --muted:#6E6A60;
-    --brass:#C9A227; --brass-text:#8A6A10;
+    --accent:#A8442A; --accent-text:#8F3A24;
     --bad:#B7412E; --good:#2E7D4F;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --ground:#15161A; --raised:#1C1E24; --line:#2A2D35;
       --ink:#E9E4DA; --text:#CFCABE; --muted:#9A9689;
-      --brass-text:#C9A227; --bad:#D98C7A; --good:#8FCB9B;
+      --accent-text:#E89478; --bad:#D98C7A; --good:#8FCB9B;
     }
   }
   *{box-sizing:border-box}
@@ -34,7 +34,7 @@
   .tag{margin:0; color:var(--muted); font-size:17px}
   .cta{
     display:inline-flex; align-items:center; gap:10px; margin:26px 0 0;
-    padding:14px 26px; border-radius:12px; background:var(--brass); color:#15161A;
+    padding:14px 26px; border-radius:12px; background:var(--accent); color:#FFFFFF;
     box-shadow:0 1px 2px rgba(0,0,0,.12);
     font-weight:600; font-size:17px; text-decoration:none;
   }
@@ -49,11 +49,11 @@
   }
   h2{
     margin:56px 0 6px; font-size:13px; font-weight:600; letter-spacing:.09em;
-    text-transform:uppercase; color:var(--brass-text);
+    text-transform:uppercase; color:var(--accent-text);
   }
   h3{margin:30px 0 6px; font-size:17px; font-weight:600}
   p{margin:0 0 14px; color:var(--text)}
-  a{color:var(--brass-text)}
+  a{color:var(--accent-text)}
   ul,ol{margin:0 0 14px; padding-left:20px; color:var(--text)}
   li{margin:5px 0}
   .card{
@@ -75,7 +75,7 @@
     color:var(--muted); text-decoration:none; font-size:14px;
     padding:5px 12px; border:1px solid var(--line); border-radius:999px;
   }
-  .lang a:hover{color:var(--ink); border-color:var(--brass)}
+  .lang a:hover{color:var(--ink); border-color:var(--accent)}
   hr{border:0; border-top:1px solid var(--line); margin:64px 0}
   footer{padding:40px 0 72px; color:var(--muted); font-size:14px; text-align:center}
   code{
