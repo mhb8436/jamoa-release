@@ -3,9 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jamoa — Filenames intact on Windows</title>
 <meta name="theme-color" content="#A8442A">
-<meta name="description" content="jamoa is a free macOS archiver that keeps filenames intact between macOS and Windows. Download the notarized DMG.">
+<title>자모아 jamoa — 맥용 압축 프로그램 · Filenames intact on Windows</title>
+<meta name="description" content="맥용 무료 압축 프로그램. ZIP·7Z·TAR 압축과 해제, Windows로 보낸 한글 파일명이 자모로 깨지지 않고 Windows에서 온 CP949 압축 파일도 제대로 풉니다. Apple 공증 DMG, Homebrew 지원. Free macOS archiver that keeps Korean, Japanese and Chinese filenames intact on Windows.">
+<meta name="keywords" content="맥 압축 프로그램, 맥용 압축, 맥 zip 한글 깨짐, 자모 분리, 맥 압축 해제, 7z 맥, macOS archiver, zip mac korean, jamoa, 자모아">
+<link rel="canonical" href="https://mhb8436.github.io/jamoa-release/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="jamoa">
+<meta property="og:title" content="자모아 jamoa — 맥용 압축 프로그램 · Filenames intact on Windows">
+<meta property="og:description" content="맥용 무료 압축 프로그램. ZIP·7Z·TAR 압축과 해제, Windows로 보낸 한글 파일명이 자모로 깨지지 않고 Windows에서 온 CP949 압축 파일도 제대로 풉니다. Apple 공증 DMG, Homebrew 지원. Free macOS archiver that keeps Korean, Japanese and Chinese filenames intact on Windows.">
+<meta property="og:url" content="https://mhb8436.github.io/jamoa-release/">
+<meta property="og:image" content="https://mhb8436.github.io/jamoa-release/icon.png">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "jamoa",
+ "alternateName": "자모아",
+ "applicationCategory": "UtilitiesApplication",
+ "operatingSystem": "macOS 14 or later",
+ "url": "https://mhb8436.github.io/jamoa-release/",
+ "image": "https://mhb8436.github.io/jamoa-release/icon.png",
+ "description": "맥용 무료 압축 프로그램. ZIP·7Z·TAR 압축과 해제, Windows로 보낸 한글 파일명이 자모로 깨지지 않고 Windows에서 온 CP949 압축 파일도 제대로 풉니다. Apple 공증 DMG, Homebrew 지원. Free macOS archiver that keeps Korean, Japanese and Chinese filenames intact on Windows.",
+ "inLanguage": [
+  "ko",
+  "en"
+ ],
+ "isAccessibleForFree": true,
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD"
+ },
+ "downloadUrl": "https://github.com/mhb8436/jamoa-release/releases/latest/download/jamoa.dmg",
+ "installUrl": "https://github.com/mhb8436/jamoa-release/releases/latest",
+ "author": {
+  "@type": "Person",
+  "name": "JI HOON LEE"
+ },
+ "featureList": [
+  "ZIP, TAR, TAR.GZ, TAR.XZ, TAR.BZ2, 7Z 만들기",
+  "GZIP, XZ, BZIP2 열기",
+  "AES-256 ZIP 암호화",
+  "파일명 NFC 정규화 — Windows에서 자모가 분리되지 않음",
+  "CP949·Shift_JIS·GB18030·Big5 등 레거시 인코딩 추정과 미리보기",
+  "Finder 우클릭 확장"
+ ]
+}
+</script>
 <style>
   :root{
     --ground:#FBF9F4; --raised:#FFFFFF; --line:#E6E1D6;
@@ -94,7 +142,7 @@
   <header>
     <img src="icon.png" alt="jamoa">
     <h1>jamoa</h1>
-    <p class="tag">Filenames intact on Windows &middot; Windows로 보낸 파일명이 깨지지 않습니다</p>
+    <p class="tag">Filenames intact on Windows &middot; 맥용 압축 프로그램, Windows로 보낸 한글 파일명이 깨지지 않습니다</p>
 
     <a class="cta" href="https://github.com/mhb8436/jamoa-release/releases/latest/download/jamoa.dmg">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -205,7 +253,7 @@
   <section id="korean" lang="ko">
     <div class="card center">
       <a class="cta" style="margin:0" href="https://github.com/mhb8436/jamoa-release/releases/latest/download/jamoa.dmg">macOS용 다운로드</a>
-      <p class="meta">macOS 14 이상 &middot; Apple 실리콘·인텔 &middot; Apple 공증 완료 &middot; 무료</p>
+      <p class="meta">맥용 무료 압축 프로그램 &middot; macOS 14 이상 &middot; Apple 실리콘·인텔 &middot; Apple 공증 완료</p>
     </div>
 
     <h2>어떤 문제인가</h2>
@@ -291,6 +339,7 @@
 
   <footer>
     jamoa &middot; macOS &middot; <span id="y"></span> JI HOON LEE
+    &middot; a companion to <a href="https://mhb8436.github.io/bakkumi-release/">bakkumi</a>
   </footer>
 
 </div>
